@@ -10,7 +10,6 @@ session_start();
 
 $id = $_GET['id'] ?? '';
 $token = $_GET['token'] ?? '';
-$SESSION_ACCESS = $_ENV['SESSION_TOKEN']
 
 $valid_tokens = array_combine(
     array_map(fn($i) => str_pad($i, 3, '0', STR_PAD_LEFT), range(1, 999)),
@@ -18,7 +17,7 @@ $valid_tokens = array_combine(
 );
 
 if (isset($valid_tokens[$id]) && $valid_tokens[$id] === $token) {
-    $_SESSION["$SESSION_ACCESS"] = true;
+    $_SESSION['valid_access'] = true;
 
     $pages = [
         "/passport/{$id}/test1.php",
