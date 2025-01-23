@@ -1,3 +1,4 @@
 .env
 /vendor
 /passport
+/custom/uploads
