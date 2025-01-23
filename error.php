@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>使用 NFC 标签进入</title>
+    <title>QIQI ISLAND PASSPORT</title>
     <style>
         body {
             display: flex; /* 使用 Flexbox 布局 */
