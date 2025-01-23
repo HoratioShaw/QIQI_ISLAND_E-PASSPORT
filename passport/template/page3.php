@@ -26,6 +26,7 @@ unset($_SESSION['valid_access']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../favicon.jpg">
     <title>Test Page1 NO.003</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
