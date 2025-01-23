@@ -1,6 +1,6 @@
 <?php
 // 引入 phpdotenv 库
-require_once'vendor/autoload.php';
+require_once'../../vendor/autoload.php';
 
 // 加载 .env 文件
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
