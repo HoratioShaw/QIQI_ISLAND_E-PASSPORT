@@ -28,6 +28,7 @@ if (isset($valid_tokens[$id]) && $valid_tokens[$id] === $token) {
     header("Location: " . $pages[array_rand($pages)]);
     exit();
 } else {
-    echo "Invalid ID or Token.";
+    header("Location: " . "error.php");
+    exit();
 }
 ?>
