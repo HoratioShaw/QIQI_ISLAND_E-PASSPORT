@@ -1,8 +1,18 @@
 <?php
+// 引入 phpdotenv 库
+require_once'vendor/autoload.php';
+
+// 加载 .env 文件
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// 获取 .env 文件中的配置
+$valid_access_key = $_ENV['VALID_ACCESS_KEY'];
+
 session_start(); // 启动会话
 
 // 如果 session 中没有 valid_access 标识，说明没有通过合法跳转访问此页面
-if (!isset($_SESSION['valid_access']) || $_SESSION['valid_access'] !== true) {
+if (!isset($_SESSION['valid_access']) || $_SESSION['valid_access']!== $valid_access_key) {
     // 如果没有标识，则禁止访问并跳转到一个错误页面或者首页
     header("Location: /error.php"); // 或者你可以指定其他的错误页面
     exit();
