@@ -1,6 +1,6 @@
 <?php
 // 引入 phpdotenv 库
-require_once'vendor/autoload.php';
+require_once'../../vendor/autoload.php';
 
 // 加载 .env 文件
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -27,7 +27,7 @@ unset($_SESSION['valid_access']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Page1 NO.001</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="container">

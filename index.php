@@ -20,9 +20,9 @@ $valid_tokens = array_combine(
 if (isset($valid_tokens[$id]) && $valid_tokens[$id] === $token) {
     $_SESSION['valid_access'] = $valid_access_key;
     $pages = [
-        "/passport/{$id}/test1.php",
-        "/passport/{$id}/test2.php",
-        "/passport/{$id}/test3.php"
+        "/passport/{$id}/page1.php",
+        "/passport/{$id}/page2.php",
+        "/passport/{$id}/page3.php"
     ];
 
     header("Location: " . $pages[array_rand($pages)]);
