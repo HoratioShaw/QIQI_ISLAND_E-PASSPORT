@@ -35,7 +35,7 @@ for target_folder in target_folders:
                     f.seek(0)
                     for line in lines:
                         if line.startswith("PASSPORT_NUMBER="):
-                            line = f"PASSPORT_NUMBER={folder_name}\n"
+                            line = f"PASSPORT_NUMBER=NO.{folder_name}\n"
                         f.write(line)
                     f.truncate()
         else:
