@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <div class="title">上传定制信息</div>
-        <div class="subtitle">如需修改，请重新上传</br>如果有多个订单号，请以订单号-1，订单号-2形式分别上传</br>如需要焦迈奇模板，请在名称处填写默认（其他信息随意填写，会修改成焦迈奇信息）</div>
+        <div class="subtitle">如需修改，请重新上传</br>如果一个订单号内有多份护照，请以订单号-1，订单号-2形式分别上传</br>如需要焦迈奇模板，请在名称处填写默认（其他信息随意填写，会修改成焦迈奇信息）</div>
         <a href="view.php" class="button-link">查看已上传信息</a>
         <div class="form-wrapper">
             <div class="form-container">
