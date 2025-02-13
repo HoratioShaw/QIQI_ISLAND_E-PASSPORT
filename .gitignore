@@ -1,3 +1,4 @@
-.env
+/.env
 /custom/upload
 /passport
+/passport/template/.env
