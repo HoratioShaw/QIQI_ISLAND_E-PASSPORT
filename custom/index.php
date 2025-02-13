@@ -11,9 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('请完整填写所有字段。');
     }
 
-    $uploadDir = __DIR__ . "/uploads/" . $orderNumber;
+    $uploadDir = __DIR__ . "/upload/" . $orderNumber;
 
-    // 如果目录已存在，则删除原文件
     if (is_dir($uploadDir)) {
         array_map('unlink', glob($uploadDir . "/*"));
     } else {
@@ -21,9 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!empty($_FILES['photo']['tmp_name'])) {
-        // 获取文件的扩展名
         $fileExtension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
-        // 生成带时间戳的文件名：order_number_时间戳.扩展名
         $timestamp = time();
         $photoPath = $uploadDir . "/" . $orderNumber . "_" . $timestamp . '.' . $fileExtension;
 
@@ -34,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('请上传照片。');
     }
 
-    // 创建并写入信息文件
     $info = "名称: $name\n性别: $gender\n生日: $birthday\n微信号: $wechat\n出生省份: $province\n订单号: $orderNumber\n";
     file_put_contents($uploadDir . "/" . $orderNumber . ".txt", $info);
 
@@ -58,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* 修复超出显示器顶部的问题 */
+            min-height: 100vh;
             background-color: #f4f4f4;
         }
         .container {
@@ -136,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <div class="title">上传定制信息</div>
-        <div class="subtitle">如需修改，请重新上传</div>
+        <div class="subtitle">如需修改，请重新上传</br>如果有多个订单号，请以订单号-1，订单号-2形式分别上传</div>
         <a href="view.php" class="button-link">查看已上传信息</a>
         <div class="form-wrapper">
             <div class="form-container">
