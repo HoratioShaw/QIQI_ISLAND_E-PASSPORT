@@ -32,8 +32,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     <style>
         @font-face {
             font-family: "PingFang SC";
-            src: url('https://cdn.jsdelivr.net/npm/pingfang-font@1.0.0/PingFang-SC-Regular.woff2') format('woff2'),
-                 url('https://cdn.jsdelivr.net/npm/pingfang-font@1.0.0/PingFang-SC-Regular.woff') format('woff');
+            src: url('../../resource/font/PingFangSC-Regular.woff2') format('woff2'),
             font-weight: normal;
             font-style: normal;
         }
@@ -73,12 +72,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             width: 90%;
             max-width: 400px;
             animation: fade-in 0.6s ease-out;
-            transition: transform 0.3s ease, background 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
+            transition: background 0.3s ease;
         }
 
         .avatar {
@@ -113,7 +107,6 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             margin-top: 20px;
             animation: fade-in 0.8s ease-out;
-            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .letter-card p {
@@ -149,7 +142,6 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 
             .card, .letter-card {
                 background: rgba(51, 51, 51, 0.4);
-                border: 1px solid rgba(255, 255, 255, 0.2);
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
                 color: #fff;
             }
