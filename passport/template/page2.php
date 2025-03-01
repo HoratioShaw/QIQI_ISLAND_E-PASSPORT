@@ -19,7 +19,6 @@ $name = $_ENV['PASSPORT_NAME'];
 $number = $_ENV['PASSPORT_NUMBER'];
 
 $imageFiles = glob(__DIR__ . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
-
 $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 ?>
 <!DOCTYPE html>
@@ -29,16 +28,11 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QIQI ISLAND PASSPORT</title>
     <link rel="icon" href="https://passport.mikey.horatio.cn/favicon.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        @font-face {
-            font-family: "PingFang SC";
-            src: url('https://cdn.jsdelivr.net/npm/pingfang-font@1.0.0/PingFang-SC-Regular.woff2') format('woff2'),
-                 url('https://cdn.jsdelivr.net/npm/pingfang-font@1.0.0/PingFang-SC-Regular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -46,19 +40,33 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
         }
 
         body {
-            font-family: "PingFang SC", sans-serif;
+            font-family: "Noto Sans SC", "Noto Sans", sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            background: url('../../resource/image/page1/wide.jpg') no-repeat center center/cover;
             padding: 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        @media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+            body {
+                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+            }
         }
 
         .card {
-            background: white;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             padding: 20px;
@@ -66,11 +74,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             width: 90%;
             max-width: 400px;
             animation: fade-in 0.6s ease-out;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
+            transition: background 0.3s ease;
         }
 
         .avatar {
@@ -89,11 +93,13 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 
         .number {
             font-size: 18px;
-            color: #777;
+            color: #333;
         }
 
         .letter-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: #333;
             padding: 20px;
             border-radius: 15px;
@@ -125,14 +131,14 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 
         @media (prefers-color-scheme: dark) {
             body {
-                background: linear-gradient(135deg, #2d2d2d, #1e1e1e);
+                background-color: #1e1e1e;
                 color: #fff;
             }
 
             .card, .letter-card {
-                background: #333;
-                color: #fff;
+                background: rgba(51, 51, 51, 0.4);
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                color: #fff;
             }
 
             .avatar {
@@ -144,7 +150,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             }
 
             .number {
-                color: #bbb;
+                color: #fff;
             }
 
             footer {
@@ -163,8 +169,12 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     </div>
 
     <div class="letter-card">
-        <p>“哗啦啦少年再见，回头望一眼，时间像风一样掠过指尖。”</br>每次看到你们在人群中为我挥舞双手，我都会想起这句歌词。时间真的过得好快，但你们的支持和陪伴却一直像星星一样，照亮了我的路。</br></br>“我的名字，在你心里是否还有意义?”</br>其实我知道，答案早已藏在你们的每一次呐喊和微笑里。你们的喜欢让我明白，音乐不仅是我的表达，也是我们之间的桥梁。</br></br>未来的路上，也许会有风雨，但请记住：“我们
-都是追光的人，哪怕跌倒也要勇敢前行。”</br>希望你们也能像歌词里那样，永远保持少年的勇气和热情，去追逐属于自己的光。</br></br>感谢你们，让我成为更好的自己。</br>下次见面，我们再一起唱响那些属于我们的歌吧!</p>
+        <p>**%$#…｛hjxbua%sinssnbx—》&amp;c%**%$#…｛hjxbua%sinssnbx—》&amp;c%cc…｛hjxbua%sinssnbx—》&amp;**%$#…｛hjxbua%sinssnbx—》&amp;c%cc%$#…｛hjxbua%sinssnbx—》&amp;c%**%$#…｛hjxbua%sinssnbx—》&amp;c%cc…｛hjxbua%sinssnbx—》&amp;**%$#…｛hjxbua%sinssnbx—》&amp;c%cc%cc**%｛hjxbua%sinssnbx—》&amp;c%cc</br>
+           ｛hjxbua%sinssnbx—》&amp;*……（&amp;*）</br>
+           ｛hjxbua%sinssnbx—》%%&amp;…………%*%</br>
+           ｛hjxbua%sinssnbx—》¥%¥%#¥</br>
+           ｛hjxbua%sinssnbx—》（*）（&amp;%&amp;</br>
+        </p>
     </div>
 
     <footer>© QIQI ISLAND PASSPORT</footer>

@@ -28,15 +28,11 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QIQI ISLAND PASSPORT</title>
     <link rel="icon" href="https://passport.mikey.horatio.cn/favicon.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        @font-face {
-            font-family: "PingFang SC";
-            src: url('../../resource/font/PingFangSC-Regular.woff2') format('woff2'),
-            font-weight: normal;
-            font-style: normal;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -44,7 +40,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
         }
 
         body {
-            font-family: "PingFang SC", sans-serif;
+            font-family: "Noto Sans SC", "Noto Sans", sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -53,6 +49,12 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             background: url('../../resource/image/page1/wide.jpg') no-repeat center center/cover;
             padding: 20px;
             transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        @media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+            body {
+                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+            }
         }
 
         @media (max-width: 768px) {
@@ -91,7 +93,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 
         .number {
             font-size: 18px;
-            color: #777;
+            color: #333;
         }
 
         .letter-card {
@@ -129,15 +131,8 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 
         @media (prefers-color-scheme: dark) {
             body {
-                background: url('../../resource/image/page1/wide.jpg') no-repeat center center/cover;
                 background-color: #1e1e1e;
                 color: #fff;
-            }
-
-            @media (max-width: 768px) {
-                body {
-                    background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
-                }
             }
 
             .card, .letter-card {
@@ -155,7 +150,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             }
 
             .number {
-                color: #bbb;
+                color: #fff;
             }
 
             footer {
@@ -174,8 +169,15 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     </div>
 
     <div class="letter-card">
-        <p>你好，焦迈奇。我是焦迈奇</br>替你感到开心，你在22岁的时候，拥有第一张自己的正式专辑</br>你做到了，你完成了人生中一个小梦想。</br>要记得感谢帮助过你的每一个人，</br>感谢此刻拿着这张专辑支持着你的每一个人。</br>期待32岁的与我碰面</br>
-那时候的你，</br>还是一个唱歌会有山东口音的潍坊小伙。</p>
+        <p>你好，焦迈奇。我是焦迈奇</br>
+           替你感到开心，你在22岁的时候，拥有第一张自己的正式专辑</br>
+           你做到了，你完成了人生中一个小梦想。</br>
+           要记得感谢帮助过你的每一个人，</br>
+           感谢此刻拿着这张专辑支持着你的每一个人。</br>
+           期待32岁的与我碰面</br>
+           那时候的你，</br>
+           还是一个唱歌会有山东口音的潍坊小伙。
+        </p>
     </div>
 
     <footer>© QIQI ISLAND PASSPORT</footer>
