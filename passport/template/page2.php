@@ -27,7 +27,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QIQI ISLAND PASSPORT</title>
-    <link rel="icon" href="https://passport.mikey.horatio.cn/favicon.jpg">
+    <link rel="icon" href="https://passport.mikey.horatio.cn/favicon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -169,13 +169,12 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     </div>
 
     <div class="letter-card">
-        <p>"**%$#…｛hjxbua%sinssnbx—》&amp;c%**%$#…｛hjxbua%sinssnbx—》&amp;c%cc…｛hjxbua%sinssnbx—》&amp;**%$#…｛hjxbua%sinssnbx—》&amp;c%cc%$#…｛hjxbua%sinssnbx—》&amp;c%**%$#…｛hjxbua%sinssnbx—》&amp;c%cc…｛hjxbua%sinssnbx—》&amp;**%$#…｛hjxbua%sinssnbx—》&amp;c%cc%cc**%｛hjxbua%sinssnbx—》&amp;c%cc</br>
-           ｛hjxbua%sinssnbx—》&amp;*……（&amp;*）</br>
-           ｛hjxbua%sinssnbx—》%%&amp;…………%*%</br>
-           ｛hjxbua%sinssnbx—》¥%¥%#¥</br>
-           ｛hjxbua%sinssnbx—》（*）（&amp;%&amp;</br>"
-        </p>
-    </div>
+    <p>**%$#…｛hjxbua%sinssnbx—》&amp;c%**%$#…｛hjxbua%sinssnbx—》&amp;c%cc…｛hjxbua%sinssnbx—》&amp;**%$#…｛hjxbua%sinssnbx—》&amp;c%cc%$#…｛hjxbua%sinssnbx—》&amp;c%**%$#…｛hjxbua%sinssnbx—》&amp;c%cc…｛hjxbua%sinssnbx—》&amp;**%$#…｛hjxbua%sinssnbx—》&amp;c%cc%cc**%｛hjxbua%sinssnbx—》&amp;c%cc</br>
+       ｛hjxbua%sinssnbx—》&amp;*……（&amp;*）</br>
+       ｛hjxbua%sinssnbx—》%%&amp;…………%*%</br>
+       ｛hjxbua%sinssnbx—》¥%¥%#¥</br>
+       ｛hjxbua%sinssnbx—》（*）（&amp;%&amp;</p>
+</div>
 
     <footer>© QIQI ISLAND PASSPORT</footer>
 </body>
