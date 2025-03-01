@@ -51,14 +51,14 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: url('../../resource/page1/wide.jpg') no-repeat center center/cover;
+            background: url('../../resource/image/page1/wide.jpg') no-repeat center center/cover;
             padding: 20px;
             transition: background 0.3s ease, color 0.3s ease;
         }
 
         @media (max-width: 768px) {
             body {
-                background: url('../../resource/page1/narrow.jpg') no-repeat center center/cover;
+                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
             }
         }
 
@@ -136,14 +136,14 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 
         @media (prefers-color-scheme: dark) {
             body {
-                background: url('../../resource/page1/wide.jpg') no-repeat center center/cover;
+                background: url('../../resource/image/page1/wide.jpg') no-repeat center center/cover;
                 background-color: #1e1e1e;
                 color: #fff;
             }
 
             @media (max-width: 768px) {
                 body {
-                    background: url('../../resource/page1/narrow.jpg') no-repeat center center/cover;
+                    background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
                 }
             }
 
