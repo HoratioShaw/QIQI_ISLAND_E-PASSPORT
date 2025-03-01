@@ -19,7 +19,6 @@ $name = $_ENV['PASSPORT_NAME'];
 $number = $_ENV['PASSPORT_NUMBER'];
 
 $imageFiles = glob(__DIR__ . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
-
 $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 ?>
 <!DOCTYPE html>
@@ -52,13 +51,21 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            background: url('../../resource/page1/wide.jpg') no-repeat center center/cover;
             padding: 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background: url('../../resource/page1/narrow.jpg') no-repeat center center/cover;
+            }
         }
 
         .card {
-            background: white;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             padding: 20px;
@@ -66,7 +73,8 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             width: 90%;
             max-width: 400px;
             animation: fade-in 0.6s ease-out;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .card:hover {
@@ -93,7 +101,9 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
         }
 
         .letter-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: #333;
             padding: 20px;
             border-radius: 15px;
@@ -103,6 +113,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             margin-top: 20px;
             animation: fade-in 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .letter-card p {
@@ -125,14 +136,22 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 
         @media (prefers-color-scheme: dark) {
             body {
-                background: linear-gradient(135deg, #2d2d2d, #1e1e1e);
+                background: url('../../resource/page1/wide.jpg') no-repeat center center/cover;
+                background-color: #1e1e1e;
                 color: #fff;
             }
 
+            @media (max-width: 768px) {
+                body {
+                    background: url('../../resource/page1/narrow.jpg') no-repeat center center/cover;
+                }
+            }
+
             .card, .letter-card {
-                background: #333;
-                color: #fff;
+                background: rgba(51, 51, 51, 0.4);
+                border: 1px solid rgba(255, 255, 255, 0.2);
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                color: #fff;
             }
 
             .avatar {
@@ -163,8 +182,8 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     </div>
 
     <div class="letter-card">
-        <p>“哗啦啦少年再见，回头望一眼，时间像风一样掠过指尖。”</br>每次看到你们在人群中为我挥舞双手，我都会想起这句歌词。时间真的过得好快，但你们的支持和陪伴却一直像星星一样，照亮了我的路。</br></br>“我的名字，在你心里是否还有意义?”</br>其实我知道，答案早已藏在你们的每一次呐喊和微笑里。你们的喜欢让我明白，音乐不仅是我的表达，也是我们之间的桥梁。</br></br>未来的路上，也许会有风雨，但请记住：“我们
-都是追光的人，哪怕跌倒也要勇敢前行。”</br>希望你们也能像歌词里那样，永远保持少年的勇气和热情，去追逐属于自己的光。</br></br>感谢你们，让我成为更好的自己。</br>下次见面，我们再一起唱响那些属于我们的歌吧!</p>
+        <p>你好，焦迈奇。我是焦迈奇</br>替你感到开心，你在22岁的时候，拥有第一张自己的正式专辑</br>你做到了，你完成了人生中一个小梦想。</br>要记得感谢帮助过你的每一个人，</br>感谢此刻拿着这张专辑支持着你的每一个人。</br>期待32岁的与我碰面</br>
+那时候的你，</br>还是一个唱歌会有山东口音的潍坊小伙。</p>
     </div>
 
     <footer>© QIQI ISLAND PASSPORT</footer>
