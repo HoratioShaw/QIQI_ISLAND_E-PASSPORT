@@ -141,10 +141,6 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
                 color: #fff;
             }
 
-            .avatar {
-                border: 3px solid #444;
-            }
-
             .name {
                 color: #fff;
             }

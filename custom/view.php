@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .subtitle {
             margin-bottom: 20px;
             font-size: 16px;
-            color: #666;
+            color: #333;
         }
 
         .form-wrapper {
@@ -215,7 +215,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .form-container input {
                 background: rgba(255, 255, 255, 0.1);
                 color: #fff;
-                border: 1px solid #555;
             }
             .form-container input::placeholder {
                 color: #fff;
