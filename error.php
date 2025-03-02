@@ -79,7 +79,7 @@
                 color: #fff;
             }
 
-            .message-card, {
+            .message-card {
                 background: rgba(51, 51, 51, 0.4);
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
                 color: #fff;

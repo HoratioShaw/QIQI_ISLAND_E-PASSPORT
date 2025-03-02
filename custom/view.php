@@ -129,6 +129,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: #0056b3;
         }
 
+        .form-container .reupload-button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .form-container .reupload-button:hover {
+            background-color: #0056b3;
+        }
+
         .info-content,
         .photo-preview {
             margin-top: 20px;
@@ -191,25 +202,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 color: #fff;
             }
 
-            .form-container input,
-            .form-container button {
+            .form-container input {
                 background-color: #444;
                 color: white;
                 border: 1px solid #555;
-            }
-
-            .form-container button:hover {
-                background-color: #333;
-            }
-
-            .info-content,
-            .photo-preview {
-                background-color: #333;
-                color: #fff;
-            }
-
-            .photo-preview img {
-                border: 2px solid #444;
             }
         }
     </style>
@@ -224,6 +220,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="order_number">订单号</label>
                     <input type="text" id="order_number" name="order_number" placeholder="请输入订单号" required>
                     <button type="submit">查看</button>
+                    <a href="/custom">
+                        <button type="button" class="reupload-button">重新上传信息</button>
+                    </a>
                 </form>
             </div>
         </div>
