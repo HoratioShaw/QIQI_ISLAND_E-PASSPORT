@@ -181,6 +181,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #000;
         }
 
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
         @keyframes fade-in {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -218,6 +225,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             label {
                 color: #fff;
             }
+            footer {
+                color: #bbb;
+            }            
         }
     </style>
 </head>
@@ -273,6 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">提交</button>
         </form>
     </div>
+    <footer>© QIQI ISLAND PASSPORT</footer>
 
     <script>
         function toggleFields(type) {
