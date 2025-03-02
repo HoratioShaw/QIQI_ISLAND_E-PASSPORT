@@ -271,12 +271,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div id="photoUpload" style="display:none;">
-                <label for="photo">一寸照</label>
+                <label for="photo">一寸照（大小2MB内）</label>
                 <input type="file" id="photo" name="photo" accept="image/*">
             </div>
 
             <div id="signatureUpload" style="display:none;">
-                <label for="signature">签名照片（可选）</label>
+                <label for="signature">签名照片（可选 不上传默认焦迈奇 大小2MB内）</label>
                 <input type="file" id="signature" name="signature" accept="image/*">
             </div>
 

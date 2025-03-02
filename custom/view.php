@@ -261,12 +261,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <?php if ($signaturePhoto): ?>
                     <div class="photo-item">
-                        <h3>上传的签名照片：</h3>
+                        <h3>上传的签名：</h3>
                         <img src="upload/<?php echo $orderNumber . '/' . $signaturePhoto; ?>" alt="签名照片">
                     </div>
                 <?php else: ?>
                     <div class="photo-item">
-                        <h3>没有上传签名照片。</h3>
+                        <h3>没有上传签名。</h3>
                     </div>
                 <?php endif; ?>
             </div>
