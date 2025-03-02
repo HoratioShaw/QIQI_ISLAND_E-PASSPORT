@@ -210,6 +210,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 color: #fff;
                 border: 1px solid #555;
             }
+            .form-container input::placeholder {
+                color: #fff;
+            }
         }
     </style>
 </head>
