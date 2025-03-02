@@ -1,38 +1,66 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $type = $_POST['type'] ?? '';
     $name = $_POST['name'] ?? '';
     $gender = $_POST['gender'] ?? '';
     $birthday = $_POST['birthday'] ?? '';
     $wechat = $_POST['wechat'] ?? '';
     $province = $_POST['province'] ?? '';
     $orderNumber = $_POST['order_number'] ?? '';
+    $signaturePhoto = $_FILES['signature'] ?? null;
 
-    if (empty($name) || empty($gender) || empty($birthday) || empty($wechat) || empty($province) || empty($orderNumber)) {
-        die('请完整填写所有字段。');
-    }
-
-    $uploadDir = __DIR__ . "/upload/" . $orderNumber;
-
-    if (is_dir($uploadDir)) {
-        array_map('unlink', glob($uploadDir . "/*"));
-    } else {
-        mkdir($uploadDir, 0777, true);
-    }
-
-    if (!empty($_FILES['photo']['tmp_name'])) {
-        $fileExtension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
-        $timestamp = time();
-        $photoPath = $uploadDir . "/" . $orderNumber . "_" . $timestamp . '.' . $fileExtension;
-
-        if (!move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath)) {
-            die('上传照片失败。');
+    if ($type === '焦迈奇') {
+        if (empty($orderNumber)) {
+            die('请填写订单号。');
         }
-    } else {
-        die('请上传照片。');
-    }
 
-    $info = "名称: $name\n性别: $gender\n生日: $birthday\n微信号: $wechat\n出生省份: $province\n订单号: $orderNumber\n";
-    file_put_contents($uploadDir . "/" . $orderNumber . ".txt", $info);
+        $uploadDir = __DIR__ . "/upload/" . $orderNumber;
+        if (is_dir($uploadDir)) {
+            array_map('unlink', glob($uploadDir . "/*"));
+        } else {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $info = "类型: 预设\n订单号: $orderNumber\n";
+        file_put_contents($uploadDir . "/" . $orderNumber . ".txt", $info);
+
+    } elseif ($type === '定制') {
+        if (empty($name) || empty($gender) || empty($birthday) || empty($wechat) || empty($province) || empty($orderNumber)) {
+            die('请完整填写所有字段。');
+        }
+
+        $uploadDir = __DIR__ . "/upload/" . $orderNumber;
+        if (is_dir($uploadDir)) {
+            array_map('unlink', glob($uploadDir . "/*"));
+        } else {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        if (!empty($_FILES['photo']['tmp_name'])) {
+            $fileExtension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+            $timestamp = time();
+            $photoPath = $uploadDir . "/avatar_" . $timestamp . '.' . $fileExtension;
+
+            if (!move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath)) {
+                die('上传一寸照失败。');
+            }
+        } else {
+            die('请上传一寸照。');
+        }
+
+        if ($signaturePhoto && !empty($signaturePhoto['tmp_name'])) {
+            $signatureExtension = pathinfo($signaturePhoto['name'], PATHINFO_EXTENSION);
+            $timestamp = time();
+            $signaturePath = $uploadDir . "/signature_" . $timestamp . '.' . $signatureExtension;
+
+            if (!move_uploaded_file($signaturePhoto['tmp_name'], $signaturePath)) {
+                die('上传签名失败。');
+            }
+        }
+
+        $info = "类型：定制\n名称: $name\n性别: $gender\n生日: $birthda\n出生地点: $province\n微信号: $wechat\n订单号: $orderNumber\n";
+        file_put_contents($uploadDir . "/" . $orderNumber . ".txt", $info);
+    }
 
     echo "<script>alert('上传成功！');window.location.href='index.php';</script>";
     exit;
@@ -40,132 +68,197 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息上传 - QIQI ISLAND PASSPORT</title>
     <link rel="icon" href="../favicon.png">
-    <title>信息上传</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f4f4f4;
         }
-        .container {
+
+        body {
+            font-family: "Noto Sans SC", "Noto Sans", sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #fff;
+            justify-content: center;
+            min-height: 100vh;
+            background: url('../../resource/image/page1/wide.jpg') no-repeat center center/cover;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        @media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+            body {
+                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            text-align: center;
             width: 90%;
-            max-width: 600px;
-            box-sizing: border-box;
+            max-width: 500px;
+            animation: fade-in 0.6s ease-out;
         }
+
         .title {
-            margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-        }
-        .subtitle {
+            color: #333;
             margin-bottom: 10px;
+        }
+
+        .subtitle {
             font-size: 16px;
-            color: #666;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
-        .form-wrapper {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
+
+        input, select, button {
             width: 100%;
-        }
-        .form-container {
-            flex: 1;
-        }
-        .form-container label {
-            display: block;
-            margin-top: 10px;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-container input, .form-container select, .form-container button {
-            width: 100%;
-            margin: 5px 0;
+            margin: 8px 0;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
         }
-        .form-container button {
+
+        input, select {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        button {
             background-color: #007bff;
             color: white;
             cursor: pointer;
+            font-weight: bold;
         }
-        .form-container button:hover {
+
+        button:hover {
             background-color: #0056b3;
         }
+
         .button-link {
             display: block;
             margin-top: 15px;
-            padding: 10px 0;
-            width: 100%;
-            text-align: center;
+            padding: 10px;
             background-color: #007bff;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: bold;
-            cursor: pointer;
         }
+
         .button-link:hover {
             background-color: #0056b3;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #000;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title">上传定制信息</div>
-        <div class="subtitle">如需修改，请重新上传</br>如果一个订单号内有多份护照，请以订单号-1，订单号-2形式分别上传</br>如需要焦迈奇模板，请在名称处填写默认（其他信息随意填写，会修改成焦迈奇信息）</div>
+        <div class="title">上传信息</div>
+        <div class="subtitle">如需修改，请重新上传。<br>如相同订单号内有多份护照，请以订单号-1，订单号-2形式分别上传。</div>
         <a href="view.php" class="button-link">查看已上传信息</a>
-        <div class="form-wrapper">
-            <div class="form-container">
-                <form method="POST" enctype="multipart/form-data">
-                    <label for="name">名称</label>
-                    <input type="text" id="name" name="name" placeholder="请输入名称" required>
-                    
-                    <label for="gender">性别</label>
-                    <select id="gender" name="gender" required>
-                        <option value="">请选择性别</option>
-                        <option value="男">男</option>
-                        <option value="女">女</option>
-                    </select>
-                    
-                    <label for="birthday">生日（点按年份可快速跳转需要的年份）</label>
-                    <input type="date" id="birthday" name="birthday" required>
-                    
-                    <label for="wechat">微信号</label>
-                    <input type="text" id="wechat" name="wechat" placeholder="请输入微信号" required>
-                    
-                    <label for="province">出生省份</label>
-                    <input type="text" id="province" name="province" placeholder="请输入出生省份" required>
-                    
-                    <label for="order_number">订单号</label>
-                    <input type="text" id="order_number" name="order_number" placeholder="请输入订单号" required>
-                    
-                    <label for="photo">照片（一寸照）</label>
-                    <input type="file" id="photo" name="photo" accept="image/*" required>
-                    
-                    <button type="submit">提交</button>
-                </form>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="type">选择类型</label>
+            <select id="type" name="type" onchange="toggleFields(this.value)" required>
+                <option value="">请选择类型</option>
+                <option value="定制">定制</option>
+                <option value="焦迈奇">焦迈奇</option>
+            </select>
+
+            <div id="customFields" style="display:none;">
+                <label for="name">名称</label>
+                <input type="text" id="name" name="name" placeholder="名称">
+                
+                <label for="gender">性别</label>
+                <select id="gender" name="gender">
+                    <option value="">请选择性别</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+                
+                <label for="birthday">出生日期</label>
+                <input type="date" id="birthday" name="birthday">
+                
+                <label for="province">出生地点（省份）</label>
+                <input type="text" id="province" name="province" placeholder="出生省份">
+                
+                <label for="wechat">微信号</label>
+                <input type="text" id="wechat" name="wechat" placeholder="微信号">
             </div>
-        </div>
+
+            <div id="orderNumberField" style="display:none;">
+                <label for="order_number">订单号</label>
+                <input type="text" id="order_number" name="order_number" placeholder="订单号" required>
+            </div>
+
+            <div id="photoUpload" style="display:none;">
+                <label for="photo">一寸照</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+            </div>
+
+            <div id="signatureUpload" style="display:none;">
+                <label for="signature">签名照片（可选）</label>
+                <input type="file" id="signature" name="signature" accept="image/*">
+            </div>
+
+            <button type="submit">提交</button>
+        </form>
     </div>
+
+    <script>
+        function toggleFields(type) {
+            if (type === "定制") {
+                document.getElementById('customFields').style.display = 'block';
+                document.getElementById('photoUpload').style.display = 'block';
+                document.getElementById('orderNumberField').style.display = 'block';
+                document.getElementById('signatureUpload').style.display = 'block';
+            } else if (type === "焦迈奇") {
+                document.getElementById('customFields').style.display = 'none';
+                document.getElementById('photoUpload').style.display = 'none';
+                document.getElementById('orderNumberField').style.display = 'block';
+                document.getElementById('signatureUpload').style.display = 'none';
+            } else {
+                document.getElementById('customFields').style.display = 'none';
+                document.getElementById('photoUpload').style.display = 'none';
+                document.getElementById('orderNumberField').style.display = 'none';
+                document.getElementById('signatureUpload').style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>

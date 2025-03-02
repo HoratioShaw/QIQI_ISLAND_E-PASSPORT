@@ -17,11 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $infoFile = $uploadDir . "/" . $orderNumber . ".txt";
     $infoContent = file_exists($infoFile) ? file_get_contents($infoFile) : '';
 
-    $photoFiles = glob($uploadDir . "/*.{jpg,jpeg,png,gif,bmp}", GLOB_BRACE);
+    $photoFiles = glob($uploadDir . "/avatar*.{jpg,jpeg,png,gif,bmp}", GLOB_BRACE);
     $photo = !empty($photoFiles) ? basename($photoFiles[0]) : '';
+
+    $signatureFiles = glob($uploadDir . "/signature*.{jpg,jpeg,png,gif,bmp}", GLOB_BRACE);
+    $signaturePhoto = !empty($signatureFiles) ? basename($signatureFiles[0]) : '';
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -30,37 +32,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" href="../favicon.png">
     <title>查看已上传信息</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: "Noto Sans SC", "Noto Sans", sans-serif;
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            align-items: flex-start;
-            height: 100vh;
-            background-color: #f4f4f4;
-            overflow-y: auto;
+            min-height: 100vh;
+            background: url('../../resource/image/page1/wide.jpg') no-repeat center center/cover;
+            padding: 20px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        @media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+            body {
+                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+            }
         }
 
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #fff;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            box-sizing: border-box;
-            overflow-y: auto;
+            max-width: 800px;
+            animation: fade-in 0.6s ease-out;
+            transition: background 0.3s ease;
         }
 
         .title {
             margin-bottom: 20px;
             font-size: 24px;
             font-weight: bold;
+            color: #333;
         }
 
         .subtitle {
@@ -106,42 +129,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: #0056b3;
         }
 
-        .info-content {
+        .info-content,
+        .photo-preview {
             margin-top: 20px;
             padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
+            border-radius: 15px;
             width: 100%;
             box-sizing: border-box;
             white-space: pre-wrap;
             text-align: left;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .photo-preview {
-            margin-top: 20px;
-            width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
             align-items: center;
-            overflow: hidden;
-            background-color: #f9f9f9;
-            text-align: left;
+            justify-content: center;
             min-height: 300px;
-            box-sizing: border-box;
         }
 
-        .photo-preview h3,
-        .info-content h3 {
-            margin-bottom: 10px;
-            text-align: left;
+        .photo-preview .photo-item {
+            text-align: center;
+            margin-bottom: 20px;
             width: 100%;
+        }
+
+        .photo-preview h3 {
+            margin-bottom: 10px;
+            text-align: center;
         }
 
         .photo-preview img {
-            max-width: auto;
-            max-height: 200px;
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: cover;
             object-position: center;
+            border-radius: 8px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1e1e1e;
+                color: #fff;
+            }
+
+            .container {
+                background: rgba(51, 51, 51, 0.4);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .title, .subtitle {
+                color: #fff;
+            }
+
+            .form-container input,
+            .form-container button {
+                background-color: #444;
+                color: white;
+                border: 1px solid #555;
+            }
+
+            .form-container button:hover {
+                background-color: #333;
+            }
+
+            .info-content,
+            .photo-preview {
+                background-color: #333;
+                color: #fff;
+            }
+
+            .photo-preview img {
+                border: 2px solid #444;
+            }
         }
     </style>
 </head>
@@ -164,16 +233,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>订单信息：</h3>
                 <pre><?php echo nl2br(htmlspecialchars($infoContent)); ?></pre>
             </div>
-            <?php if ($photo): ?>
-                <div class="photo-preview">
-                    <h3>上传的照片：</h3>
-                    <img src="upload/<?php echo $orderNumber . '/' . $photo; ?>" alt="上传的照片">
-                </div>
-            <?php else: ?>
-                <div class="photo-preview">
-                    <p>没有上传照片。</p>
-                </div>
-            <?php endif; ?>
+            <div class="photo-preview">
+                <?php if ($photo): ?>
+                    <div class="photo-item">
+                        <h3>上传的头像：</h3>
+                        <img src="upload/<?php echo $orderNumber . '/' . $photo; ?>" alt="上传的头像">
+                    </div>
+                <?php else: ?>
+                    <div class="photo-item">
+                        <h3>没有上传头像。</h3>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($signaturePhoto): ?>
+                    <div class="photo-item">
+                        <h3>上传的签名照片：</h3>
+                        <img src="upload/<?php echo $orderNumber . '/' . $signaturePhoto; ?>" alt="签名照片">
+                    </div>
+                <?php else: ?>
+                    <div class="photo-item">
+                        <h3>没有上传签名照片。</h3>
+                    </div>
+                <?php endif; ?>
+            </div>
         <?php endif; ?>
     </div>
 </body>
