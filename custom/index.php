@@ -185,6 +185,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1e1e1e;
+                color: #fff;
+            }
+
+            .container {
+                background: rgba(51, 51, 51, 0.4);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                color: #fff;
+            }
+
+            .title {
+            color: #fff;
+            }
+
+            .subtitle {
+            color: #fff;
+            }
+
+            input, select {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+            }
+
+            input::placeholder, select::placeholder {
+                color: #fff;
+            }
+
+            label {
+                color: #fff;
+            }
+        }
     </style>
 </head>
 <body>

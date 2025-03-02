@@ -1,4 +1,4 @@
-<?php
+<?php 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $orderNumber = $_POST['order_number'] ?? '';
 
@@ -111,10 +111,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .form-container input, .form-container button {
+            background: rgba(255, 255, 255, 0.6);
             width: 100%;
             margin: 5px 0;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: none;
             border-radius: 5px;
             box-sizing: border-box;
         }
@@ -134,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: white;
             cursor: pointer;
             margin-top: 10px;
+            border: none;
         }
 
         .form-container .reupload-button:hover {
@@ -196,6 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .container {
                 background: rgba(51, 51, 51, 0.4);
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                color: #fff;
             }
 
             .title, .subtitle {
@@ -203,8 +206,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             .form-container input {
-                background-color: #444;
-                color: white;
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
                 border: 1px solid #555;
             }
         }
