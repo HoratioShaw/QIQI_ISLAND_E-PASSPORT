@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $infoFile = $uploadDir . "/" . $orderNumber . ".txt";
     $infoContent = file_exists($infoFile) ? file_get_contents($infoFile) : '';
 
-    $photoFiles = glob($uploadDir . "/avatar*.{jpg,jpeg,png,gif,bmp}", GLOB_BRACE);
+    $photoFiles = glob($uploadDir . "/avatar*.{jpg,jpeg,png,gif,bmp,HEIF}", GLOB_BRACE);
     $photo = !empty($photoFiles) ? basename($photoFiles[0]) : '';
 
     $signatureFiles = glob($uploadDir . "/signature*.{jpg,jpeg,png,gif,bmp}", GLOB_BRACE);
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../favicon.png">
-    <title>查看已上传信息</title>
+    <title>查看已上传信息 - QIQI ISLAND PASSPORT</title>
     <style>
         * {
             box-sizing: border-box;
@@ -179,7 +179,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             max-height: 150px;
             object-fit: cover;
             object-position: center;
-            border-radius: 8px;
             margin: 0 auto;
             display: block;
         }

@@ -10,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $signaturePhoto = $_FILES['signature'] ?? null;
 
     if ($type === '焦迈奇') {
-        if (empty($orderNumber)) {
-            die('请填写订单号。');
+        if (empty($orderNumber) || empty($wechat)) {
+            die('请完整填写所有字段。');
         }
 
         $uploadDir = __DIR__ . "/upload/" . $orderNumber;
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mkdir($uploadDir, 0777, true);
         }
 
-        $info = "类型: 预设\n订单号: $orderNumber\n";
+        $info = "类型: 预设\n订单号: $orderNumber\n微信号: $wechat\n";
         file_put_contents($uploadDir . "/" . $orderNumber . ".txt", $info);
 
     } elseif ($type === '定制') {
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        $info = "类型：定制\n名称: $name\n性别: $gender\n生日: $birthda\n出生地点: $province\n微信号: $wechat\n订单号: $orderNumber\n";
+        $info = "类型：定制\n名称: $name\n性别: $gender\n生日: $birthday\n出生地点: $province\n微信号: $wechat\n订单号: $orderNumber\n";
         file_put_contents($uploadDir . "/" . $orderNumber . ".txt", $info);
     }
 
@@ -234,14 +234,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <div class="title">上传信息</div>
-        <div class="subtitle">如需修改，请重新上传。<br>如相同订单号内有多份护照，请以订单号-1，订单号-2形式分别上传。</div>
+        <div class="subtitle">如需修改，请重新上传</div>
         <a href="view.php" class="button-link">查看已上传信息</a>
         <form method="POST" enctype="multipart/form-data">
             <label for="type">选择类型</label>
             <select id="type" name="type" onchange="toggleFields(this.value)" required>
                 <option value="">请选择类型</option>
-                <option value="定制">定制</option>
-                <option value="焦迈奇">焦迈奇</option>
+                <option value="定制">定制信息</option>
+                <option value="焦迈奇">焦迈奇预设信息</option>
             </select>
 
             <div id="customFields" style="display:none;">
@@ -260,23 +260,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 <label for="province">出生地点（省份）</label>
                 <input type="text" id="province" name="province" placeholder="出生省份">
-                
-                <label for="wechat">微信号</label>
-                <input type="text" id="wechat" name="wechat" placeholder="微信号">
             </div>
 
             <div id="orderNumberField" style="display:none;">
+                <label for="wechat">微信号</label>
+                <input type="text" id="wechat" name="wechat" placeholder="微信号" required>
+                
                 <label for="order_number">订单号</label>
                 <input type="text" id="order_number" name="order_number" placeholder="订单号" required>
             </div>
 
             <div id="photoUpload" style="display:none;">
-                <label for="photo">一寸照（大小建议3MB内）</label>
+                <label for="photo">一寸照（建议一寸免冠照）</label>
                 <input type="file" id="photo" name="photo" accept="image/*">
             </div>
 
             <div id="signatureUpload" style="display:none;">
-                <label for="signature">签名照片（可选 不上传默认焦迈奇 大小建议3MB内）</label>
+                <label for="signature">签名照片（可选 不上传默认焦迈奇 ）</label>
                 <input type="file" id="signature" name="signature" accept="image/*">
             </div>
 
