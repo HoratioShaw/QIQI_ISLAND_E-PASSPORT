@@ -17,11 +17,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $infoFile = $uploadDir . "/" . $orderNumber . ".txt";
     $infoContent = file_exists($infoFile) ? file_get_contents($infoFile) : '';
 
-    $photoFiles = glob($uploadDir . "/avatar*.{jpg,jpeg,png,gif,bmp,HEIF}", GLOB_BRACE);
-    $photo = !empty($photoFiles) ? basename($photoFiles[0]) : '';
+    function convertToPng($filePath) {
+        $pathInfo = pathinfo($filePath);
+        $pngFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.png';
 
-    $signatureFiles = glob($uploadDir . "/signature*.{jpg,jpeg,png,gif,bmp}", GLOB_BRACE);
-    $signaturePhoto = !empty($signatureFiles) ? basename($signatureFiles[0]) : '';
+        if (!file_exists($pngFile)) {
+            $mimeType = mime_content_type($filePath);
+
+            if ($mimeType === 'image/heif' || $mimeType === 'image/heic') {
+                $command = "ffmpeg -f hevc -i " . escapeshellarg($filePath) . " " . escapeshellarg($pngFile) . " -y 2>&1";
+            } else {
+                $command = "ffmpeg -i " . escapeshellarg($filePath) . " " . escapeshellarg($pngFile) . " -y 2>&1";
+            }
+
+            exec($command, $output, $returnVar);
+
+            if ($returnVar !== 0) {
+                $command = "convert " . escapeshellarg($filePath) . " " . escapeshellarg($pngFile);
+                exec($command, $output, $returnVar);
+            }
+
+            file_put_contents("ffmpeg_log.txt", "Command: $command\nOutput:\n" . implode("\n", $output) . "\nReturn Code: $returnVar\n", FILE_APPEND);
+
+            if ($returnVar === 0 && file_exists($pngFile)) {
+                unlink($filePath);
+            }
+        }
+
+        return basename($pngFile);
+    }
+
+    $photoFiles = glob($uploadDir . "/avatar*.{jpg,jpeg,png,gif,bmp,heic,HEIF}", GLOB_BRACE);
+    $photo = !empty($photoFiles) ? convertToPng($photoFiles[0]) : '';
+
+    $signatureFiles = glob($uploadDir . "/signature*.{jpg,jpeg,png,gif,bmp,heic,HEIF}", GLOB_BRACE);
+    $signaturePhoto = !empty($signatureFiles) ? convertToPng($signatureFiles[0]) : '';
 }
 ?>
 <!DOCTYPE html>
