@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exec($command, $output, $returnVar);
             }
 
-            file_put_contents("ffmpeg_log.txt", "Command: $command\nOutput:\n" . implode("\n", $output) . "\nReturn Code: $returnVar\n", FILE_APPEND);
+            // file_put_contents("ffmpeg_log.txt", "Command: $command\nOutput:\n" . implode("\n", $output) . "\nReturn Code: $returnVar\n", FILE_APPEND);
 
             if ($returnVar === 0 && file_exists($pngFile)) {
                 unlink($filePath);
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../favicon.png">
+    <link rel="icon" href="../resource/image/favicon/favicon.png">
     <title>查看已上传信息 - QIQI ISLAND PASSPORT</title>
     <style>
         * {
@@ -264,7 +264,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="order_number">订单号</label>
                     <input type="text" id="order_number" name="order_number" placeholder="请输入订单号" required>
                     <button type="submit">查看</button>
-                    <a href="/custom">
+                    <a href="index.php">
                         <button type="button" class="reupload-button">重新上传信息</button>
                     </a>
                 </form>

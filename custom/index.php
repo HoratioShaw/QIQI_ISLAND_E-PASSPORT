@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>信息上传 - QIQI ISLAND PASSPORT</title>
-    <link rel="icon" href="../favicon.png">
+    <link rel="icon" href="../resource/image/favicon/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
