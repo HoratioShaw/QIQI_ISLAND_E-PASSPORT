@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             width: 90%;
-            max-width: 800px;
+            max-width: 500px;
             animation: fade-in 0.6s ease-out;
             transition: background 0.3s ease;
         }
