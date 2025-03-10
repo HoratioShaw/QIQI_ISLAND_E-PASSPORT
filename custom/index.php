@@ -9,30 +9,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $orderNumber = $_POST['order_number'] ?? '';
     $signaturePhoto = $_FILES['signature'] ?? null;
 
+    function convertToPng($filePath) {
+        $pathInfo = pathinfo($filePath);
+        $pngFile = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.png';
+
+        if (!file_exists($pngFile)) {
+            $mimeType = mime_content_type($filePath);
+
+            if ($mimeType === 'image/heif' || $mimeType === 'image/heic') {
+                $command = "ffmpeg -f hevc -i " . escapeshellarg($filePath) . " " . escapeshellarg($pngFile) . " -y 2>&1";
+            } else {
+                $command = "ffmpeg -i " . escapeshellarg($filePath) . " " . escapeshellarg($pngFile) . " -y 2>&1";
+            }
+
+            exec($command, $output, $returnVar);
+
+            if ($returnVar !== 0) {
+                $command = "convert " . escapeshellarg($filePath) . " " . escapeshellarg($pngFile);
+                exec($command, $output, $returnVar);
+            }
+
+            if ($returnVar === 0 && file_exists($pngFile)) {
+                unlink($filePath);
+                return basename($pngFile);
+            }
+        }
+        return basename($filePath);
+    }
+
     if ($type === '焦迈奇') {
         if (empty($orderNumber) || empty($wechat)) {
             die('请完整填写所有字段。');
         }
 
         $uploadDir = __DIR__ . "/upload/" . $orderNumber;
-        if (is_dir($uploadDir)) {
-            array_map('unlink', glob($uploadDir . "/*"));
-        } else {
+        if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
 
         $info = "类型: 预设\n订单号: $orderNumber\n微信号: $wechat\n";
         file_put_contents($uploadDir . "/" . $orderNumber . ".txt", $info);
-
     } elseif ($type === '定制') {
         if (empty($name) || empty($gender) || empty($birthday) || empty($wechat) || empty($province) || empty($orderNumber)) {
             die('请完整填写所有字段。');
         }
 
         $uploadDir = __DIR__ . "/upload/" . $orderNumber;
-        if (is_dir($uploadDir)) {
-            array_map('unlink', glob($uploadDir . "/*"));
-        } else {
+        if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
 
@@ -41,7 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $timestamp = time();
             $photoPath = $uploadDir . "/avatar_" . $timestamp . '.' . $fileExtension;
 
-            if (!move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath)) {
+            if (move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath)) {
+                $convertedPhoto = convertToPng($photoPath);
+            } else {
                 die('上传一寸照失败。');
             }
         } else {
@@ -53,7 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $timestamp = time();
             $signaturePath = $uploadDir . "/signature_" . $timestamp . '.' . $signatureExtension;
 
-            if (!move_uploaded_file($signaturePhoto['tmp_name'], $signaturePath)) {
+            if (move_uploaded_file($signaturePhoto['tmp_name'], $signaturePath)) {
+                $convertedSignature = convertToPng($signaturePath);
+            } else {
                 die('上传签名失败。');
             }
         }
