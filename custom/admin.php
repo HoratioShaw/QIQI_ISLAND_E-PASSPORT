@@ -28,16 +28,14 @@ echo '<head>';
 echo '<meta charset="UTF-8">';
 echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 echo '<title>定制信息总览 - QIQI ISLAND PASSPORT</title>';
-echo '<link rel="icon" href="../resource/image/favicon/favicon.png">';
-
-echo '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+SC&display=swap" rel="stylesheet">';
+echo '<link rel="icon" href="../resource/images/favicon/favicon.png">';
 
 echo '<style>';
-echo 'body { font-family: "Noto Sans SC", "Noto Sans", sans-serif; background: url("../../resource/image/page1/wide.jpg") no-repeat center center/cover; color: ' . ($isDarkMode ? '#f1f1f1' : '#333') . '; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; }';
+echo 'body { font-family: "Noto Sans SC", "Noto Sans", sans-serif; background: url("../../resource/images/page1/wide.jpg") no-repeat center center/cover; color: ' . ($isDarkMode ? '#f1f1f1' : '#333') . '; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; }';
 
 echo '@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {';
 echo '    body {';
-echo '        background: url("../../resource/image/page1/narrow.jpg") no-repeat center center/cover;';
+echo '        background: url("../../resource/images/page1/narrow.jpg") no-repeat center center/cover;';
 echo '    }';
 echo '}';
 

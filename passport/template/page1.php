@@ -27,10 +27,7 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QIQI ISLAND PASSPORT</title>
-    <link rel="icon" href="../../resource/image/favicon/favicon.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../resource/images/favicon/favicon.png">
 
     <style>
         * {
@@ -46,20 +43,20 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: url('../../resource/image/page1/wide.jpg') no-repeat center center/cover;
+            background: url('../../resource/images/page1/wide.jpg') no-repeat center center/cover;
             padding: 20px;
             transition: background 0.3s ease, color 0.3s ease;
         }
 
         @media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
             body {
-                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+                background: url('../../resource/images/page1/narrow.jpg') no-repeat center center/cover;
             }
         }
 
         @media (max-width: 768px) {
             body {
-                background: url('../../resource/image/page1/narrow.jpg') no-repeat center center/cover;
+                background: url('../../resource/images/page1/narrow.jpg') no-repeat center center/cover;
             }
         }
 
