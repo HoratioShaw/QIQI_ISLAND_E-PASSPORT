@@ -13,8 +13,8 @@ $token = $_GET['token'] ?? '';
 $valid_access_key = $_ENV['VALID_ACCESS_KEY'];
 
 $valid_tokens = array_combine(
-    array_map(fn($i) => str_pad($i, 4, '0', STR_PAD_LEFT), range(1, 9999)),
-    array_map(fn($i) => $_ENV["TOKEN_" . str_pad($i, 4, '0', STR_PAD_LEFT)] ?? '', range(1, 9999))
+    array_map(fn($i) => str_pad($i, 7, '0', STR_PAD_LEFT), range(1, 9999)),
+    array_map(fn($i) => $_ENV["TOKEN_" . str_pad($i, 7, '0', STR_PAD_LEFT)] ?? '', range(1, 9999))
 );
 
 if (isset($valid_tokens[$id]) && $valid_tokens[$id] === $token) {
