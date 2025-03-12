@@ -43,7 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $uploadDir = __DIR__ . "/upload/" . $orderNumber;
-        if (!is_dir($uploadDir)) {
+        if (is_dir($uploadDir)) {
+            array_map('unlink', glob($uploadDir . "/*"));
+        } else {
             mkdir($uploadDir, 0777, true);
         }
 
@@ -55,7 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $uploadDir = __DIR__ . "/upload/" . $orderNumber;
-        if (!is_dir($uploadDir)) {
+        if (is_dir($uploadDir)) {
+            array_map('unlink', glob($uploadDir . "/*"));
+        } else {
             mkdir($uploadDir, 0777, true);
         }
 
