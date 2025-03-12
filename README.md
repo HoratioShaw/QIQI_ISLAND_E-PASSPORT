@@ -1,6 +1,4 @@
 # <p align="center">奇奇岛电子护照</p>
-
-
 <p align="center">
   <img src="https://uptime.horatio.cn/api/badge/38/status" alt="Status">  
   <img src="https://uptime.horatio.cn/api/badge/38/uptime" alt="Uptime">  
