@@ -31,7 +31,7 @@ echo '<title>定制信息总览 - QIQI ISLAND PASSPORT</title>';
 echo '<link rel="icon" href="../resource/images/favicon/favicon.png">';
 
 echo '<style>';
-echo 'body { font-family: "Noto Sans SC", "Noto Sans", sans-serif; background: url("../../resource/images/page1/wide.jpg") no-repeat center center/cover; color: ' . ($isDarkMode ? '#f1f1f1' : '#333') . '; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; }';
+echo 'body { background: url("../../resource/images/page1/wide.jpg") no-repeat center center/cover; color: ' . ($isDarkMode ? '#f1f1f1' : '#333') . '; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; }';
 
 echo '@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {';
 echo '    body {';

@@ -37,7 +37,6 @@ $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
         }
 
         body {
-            font-family: "Noto Sans SC", "Noto Sans", sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;

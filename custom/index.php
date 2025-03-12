@@ -113,7 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         body {
-            font-family: "Noto Sans SC", "Noto Sans", sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
