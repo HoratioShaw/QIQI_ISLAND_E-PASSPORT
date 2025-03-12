@@ -4,7 +4,7 @@ import shutil
 source_folder = os.path.abspath("../passport/template")
 target_parent_folder = os.path.abspath("../passport")
 
-excluded_files = [".env.example", "avatar.jpg"]
+excluded_files = [".env.example", "avatar.png"]
 
 source_files = []
 for root, dirs, files in os.walk(source_folder):
