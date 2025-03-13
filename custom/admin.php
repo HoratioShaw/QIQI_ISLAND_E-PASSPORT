@@ -41,7 +41,7 @@ echo '}';
 
 echo '@media (max-width: 768px) {';
 echo '    body {';
-echo '        background: url("../../resource/image/page1/narrow.jpg") no-repeat center center/cover;';
+echo '        background: url("../../resource/images/page1/narrow.jpg") no-repeat center center/cover;';
 echo '    }';
 echo '}';
 
