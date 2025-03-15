@@ -21,7 +21,6 @@ if (isset($valid_tokens[$id]) && $valid_tokens[$id] === $token) {
     $_SESSION['valid_access'] = $valid_access_key;
     $pages = [
         "/passport/{$id}/page1.php",
-        "/passport/{$id}/page2.php",
     ];
 
     header("Location: " . $pages[array_rand($pages)]);
