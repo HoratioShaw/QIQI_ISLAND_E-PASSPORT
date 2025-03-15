@@ -18,7 +18,7 @@ unset($_SESSION['valid_access']);
 $name = $_ENV['PASSPORT_NAME'];
 $number = $_ENV['PASSPORT_NUMBER'];
 
-$imageFiles = glob(__DIR__ . '/avatar*}', GLOB_BRACE);
+$imageFiles = glob(__DIR__ . '/avatar*', GLOB_BRACE);
 $imageUrl = !empty($imageFiles) ? basename($imageFiles[0]) : null;
 ?>
 <!DOCTYPE html>
