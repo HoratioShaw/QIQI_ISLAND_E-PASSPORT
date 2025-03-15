@@ -47,10 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return basename($pngFile);
     }
 
-    $photoFiles = glob($uploadDir . "/avatar*.{jpg,jpeg,png,gif,bmp,heic,HEIF}", GLOB_BRACE);
+    $photoFiles = glob($uploadDir . "/avatar*", GLOB_BRACE);
     $photo = !empty($photoFiles) ? convertToPng($photoFiles[0]) : '';
 
-    $signatureFiles = glob($uploadDir . "/signature*.{jpg,jpeg,png,gif,bmp,heic,HEIF}", GLOB_BRACE);
+    $signatureFiles = glob($uploadDir . "/signature*", GLOB_BRACE);
     $signaturePhoto = !empty($signatureFiles) ? convertToPng($signatureFiles[0]) : '';
 }
 ?>
