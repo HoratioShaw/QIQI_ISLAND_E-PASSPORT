@@ -1,8 +1,8 @@
 # <p align="center">奇奇岛电子护照</p>
 <p align="center">
-  <img src="https://uptime.horatio.cn/api/badge/38/status" alt="Status">  
-  <img src="https://uptime.horatio.cn/api/badge/38/uptime" alt="Uptime">  
-  <img src="https://uptime.horatio.cn/api/badge/38/ping" alt="Ping">
+  <img src="https://uptime.horatio.cn/api/badge/21/status" alt="Status">  
+  <img src="https://uptime.horatio.cn/api/badge/21/uptime" alt="Uptime">  
+  <img src="https://uptime.horatio.cn/api/badge/21/ping" alt="Ping">
 </p>
 
 ## 项目说明
