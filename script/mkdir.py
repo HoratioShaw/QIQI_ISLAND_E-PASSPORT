@@ -4,7 +4,7 @@ target_dir = "../passport"
 
 os.makedirs(target_dir, exist_ok=True)
 
-for i in range(1, 1001):
+for i in range(1, 281):
     folder_name = f"{i:07d}"
     folder_path = os.path.join(target_dir, folder_name)
 

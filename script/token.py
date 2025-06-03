@@ -6,13 +6,13 @@ def generate_token(length=12):
     return ''.join(random.choices(chars, k=length))
 
 with open(".env", "w") as env_file, open("links.txt", "w") as links_file:
-    for i in range(1, 1001):
+    for i in range(1, 281):
         token_id = f"{i:07d}"
         token_value = generate_token()
 
         env_file.write(f"TOKEN_{token_id}={token_value}\n")
 
-        link = f"http://passport.mikey.horatio.cn/?id={token_id}&token={token_value}\n"
+        link = f"https://passport-mikey.horatio.cn/?id={token_id}&token={token_value}\n"
         links_file.write(link)
 
 print(".env 和 links.txt 文件已生成！")
